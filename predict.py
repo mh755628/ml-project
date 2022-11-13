@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 
 for mfcc in mfccs:
-    prediction = model.predict_classes(mfcc.reshape(1, mfcc.shape[0], mfcc.shape[1], 1))
+    prediction = np.argmax(model.predict(mfcc.reshape(1, mfcc.shape[0], mfcc.shape[1], 1)),axis=1)
     frequency[prediction[0]] += 1
     print('current prediction: ' + label[prediction[0]] + ', currently playing: ' + label[np.argmax(frequency)])
     plt.bar(label, frequency)
